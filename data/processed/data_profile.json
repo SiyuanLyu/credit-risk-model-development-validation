@@ -1,0 +1,9 @@
+{
+  "n_total": 30000,
+  "n_train": 21000,
+  "n_test": 9000,
+  "default_rate_total": 0.2212,
+  "default_rate_train": 0.2211904761904762,
+  "default_rate_test": 0.2212222222222222,
+  "n_features_total": 32
+}
