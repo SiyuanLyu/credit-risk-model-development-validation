@@ -36,3 +36,15 @@ If the challenger wins materially, explain why the champion should still
 
 ### 6. Conclusion
 TODO — one paragraph: approve / approve with conditions / reject, and why.
+
+### 7. ML challenger review (added with the ML extension)
+Evidence: outputs/sequence_metrics.json, outputs/monotone_xgb_metrics.json,
+outputs/shap_importance.csv, outputs/reason_codes_sample.csv,
+outputs/ml_extension_results.md.
+TODO — judge the challengers as a validator: the GRU sequence model
+(test AUC 0.764) does not beat unconstrained XGBoost (0.780) at this data
+scale; the monotonicity-constrained variant trades ~1.5 AUC points for
+directionally guaranteed behaviour. State whether either challenger earns
+promotion over the scorecard champion, what explainability evidence you
+require (SHAP consistency with IV ranking, reason-code quality), and what
+additional data would change your conclusion.
