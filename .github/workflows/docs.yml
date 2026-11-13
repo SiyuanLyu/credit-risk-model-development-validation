@@ -1,0 +1,27 @@
+name: build-docs
+
+# Builds PDF versions of the model development document and the
+# independent validation report whenever the docs change, and stores
+# them as build artifacts (attach them to a Release for a permanent link).
+on:
+  push:
+    paths:
+      - "docs/**"
+  workflow_dispatch:
+
+jobs:
+  pdf:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install pandoc + LaTeX
+        run: sudo apt-get update && sudo apt-get install -y pandoc texlive-latex-recommended texlive-fonts-recommended texlive-latex-extra
+      - name: Build PDFs
+        run: |
+          mkdir -p build
+          pandoc docs/Model_Development_Document.md -o build/Model_Development_Document.pdf
+          pandoc docs/Independent_Validation_Report.md -o build/Independent_Validation_Report.pdf
+      - uses: actions/upload-artifact@v4
+        with:
+          name: model-docs-pdf
+          path: build/

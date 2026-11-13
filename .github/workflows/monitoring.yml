@@ -1,0 +1,48 @@
+name: ongoing-monitoring
+
+# Weekly SR 11-7-style ongoing monitoring. Each run draws a fresh simulated
+# production batch (rotating seeds introduce natural variation; a drifted
+# batch is included monthly), checks PSI against the development sample,
+# and opens an issue automatically if the breach threshold is crossed.
+on:
+  schedule:
+    - cron: "0 14 * * 1"   # Mondays 14:00 UTC
+  workflow_dispatch:
+
+jobs:
+  monitor:
+    runs-on: ubuntu-latest
+    permissions:
+      issues: write
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+      - run: pip install -r requirements.txt
+      - run: python src/00_download_data.py
+      - run: python src/01_data_prep.py && python src/02_pd_model.py
+      - name: Monitoring check
+        id: check
+        run: |
+          WEEK=$(date +%U)
+          SEED=$((10#$WEEK % 50 + 1))
+          if [ $((10#$WEEK % 4)) -eq 0 ]; then DRIFT=0.35; else DRIFT=0.0; fi
+          echo "seed=$SEED drift=$DRIFT"
+          python src/06_ongoing_monitoring.py --seed $SEED --drift $DRIFT
+      - name: Open issue on breach
+        if: failure()
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            let body = 'The weekly ongoing-monitoring job failed. See the workflow run for details.';
+            try { body = '```json\n' + fs.readFileSync('outputs/monitoring_report.json', 'utf8') + '\n```'; } catch (e) {}
+            await github.rest.issues.create({
+              owner: context.repo.owner, repo: context.repo.repo,
+              title: 'Model monitoring alert: PSI breach or pipeline failure',
+              body: body + '\n\nAction: review per the SR 11-7 monitoring plan in docs/Independent_Validation_Report.md.',
+              labels: ['model-monitoring']
+            });

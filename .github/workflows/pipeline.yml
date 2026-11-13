@@ -1,0 +1,43 @@
+name: model-pipeline
+
+# Re-runs the whole development pipeline on every push and acts as a
+# validation gate: the job fails if the champion scorecard's test AUC
+# drops below 0.70 (a stand-in for a model-risk acceptance threshold).
+on:
+  push:
+  pull_request:
+
+jobs:
+  run-pipeline:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+      - name: Download public data
+        run: python src/00_download_data.py
+      - name: Run pipeline (data -> PD -> LGD/EAD -> validation -> stress)
+        run: |
+          python src/01_data_prep.py
+          python src/02_pd_model.py
+          python src/03_lgd_ead.py
+          python src/04_validation.py
+          python src/05_cecl_stress.py
+      - name: Validation gate (champion test AUC >= 0.70)
+        run: |
+          python - <<'EOF'
+          import json
+          m = json.load(open("outputs/validation_metrics.json"))
+          auc = m["discrimination_test"]["auc"]
+          print(f"Champion test AUC = {auc:.3f}")
+          assert auc >= 0.70, "AUC below acceptance threshold"
+          EOF
+      - name: Upload model outputs
+        uses: actions/upload-artifact@v4
+        with:
+          name: model-outputs
+          path: outputs/
