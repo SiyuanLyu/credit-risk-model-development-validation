@@ -1,0 +1,21 @@
+ID,pd,reason_1,reason_2,reason_3,reason_4
+27500,0.932,Most recent repayment status (delinquency),Worst delinquency in past 6 months,bill_trend,AGE
+16555,0.913,Most recent repayment status (delinquency),Worst delinquency in past 6 months,Credit limit,Months with 2+ months delay
+14974,0.912,Most recent repayment status (delinquency),Worst delinquency in past 6 months,Months with 2+ months delay,Credit limit
+29155,0.91,Most recent repayment status (delinquency),Worst delinquency in past 6 months,bill_trend,Months with 2+ months delay
+9672,0.908,Most recent repayment status (delinquency),Worst delinquency in past 6 months,Months with 2+ months delay,bill_trend
+13407,0.903,Most recent repayment status (delinquency),Worst delinquency in past 6 months,Credit limit,Months with 2+ months delay
+28055,0.897,Most recent repayment status (delinquency),Worst delinquency in past 6 months,Credit limit,Months with 2+ months delay
+20722,0.892,Most recent repayment status (delinquency),Worst delinquency in past 6 months,Credit limit,Months with 2+ months delay
+6272,0.89,Most recent repayment status (delinquency),Worst delinquency in past 6 months,Credit limit,Months with 2+ months delay
+13479,0.886,Most recent repayment status (delinquency),Worst delinquency in past 6 months,Months with 2+ months delay,MARRIAGE
+13967,0.885,Most recent repayment status (delinquency),Worst delinquency in past 6 months,Months with 2+ months delay,Credit limit
+309,0.883,Most recent repayment status (delinquency),Worst delinquency in past 6 months,Months with 2+ months delay,Credit limit
+18095,0.882,Most recent repayment status (delinquency),Worst delinquency in past 6 months,Months with 2+ months delay,Credit limit
+29771,0.88,Most recent repayment status (delinquency),Worst delinquency in past 6 months,Credit limit,Months with 2+ months delay
+1486,0.878,Most recent repayment status (delinquency),Worst delinquency in past 6 months,Credit limit,Months with 2+ months delay
+17863,0.876,Most recent repayment status (delinquency),Worst delinquency in past 6 months,Credit limit,Months with 2+ months delay
+10152,0.872,Most recent repayment status (delinquency),Worst delinquency in past 6 months,bill_trend,Months with 2+ months delay
+29152,0.87,Most recent repayment status (delinquency),Worst delinquency in past 6 months,Months with 2+ months delay,Credit limit
+13740,0.87,Most recent repayment status (delinquency),Worst delinquency in past 6 months,Months with 2+ months delay,bill_trend
+20757,0.869,Most recent repayment status (delinquency),Worst delinquency in past 6 months,Months with 2+ months delay,bill_trend

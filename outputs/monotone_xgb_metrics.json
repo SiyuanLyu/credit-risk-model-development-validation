@@ -1,0 +1,29 @@
+{
+  "model": "XGBoost with monotonicity constraints",
+  "test": {
+    "auc": 0.765234180148233,
+    "gini": 0.5304683602964659,
+    "ks": 0.4050938597350511
+  },
+  "reference_unconstrained_xgb_auc": 0.78,
+  "constraints": {
+    "LIMIT_BAL": -1,
+    "AGE": 0,
+    "PAY_0": 1,
+    "PAY_2": 1,
+    "PAY_3": 1,
+    "PAY_4": 1,
+    "PAY_5": 1,
+    "PAY_6": 1,
+    "utilisation": 1,
+    "pay_ratio": -1,
+    "max_delinq": 1,
+    "n_delinq": 1,
+    "n_severe": 1,
+    "bill_trend": 0,
+    "avg_utilisation": 1,
+    "SEX": 0,
+    "EDUCATION": 0,
+    "MARRIAGE": 0
+  }
+}
