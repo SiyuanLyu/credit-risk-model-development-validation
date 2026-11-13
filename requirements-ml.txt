@@ -1,0 +1,6 @@
+# ML extension only (Steps 7-8). Kept separate so the core pipeline
+# and CI stay light. Install on top of requirements.txt:
+#   pip install -r requirements-ml.txt
+--extra-index-url https://download.pytorch.org/whl/cpu
+torch
+shap
