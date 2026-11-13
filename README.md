@@ -48,6 +48,18 @@ Baseline results: see `outputs/baseline_results.md`
   6 months of repayment behaviour; target = default next month.
 - Macro scenarios: FRED (UNRATE, GDPC1, CSUSHPISA, PAYEMS).
 
+## ML extension (Steps 7–8, optional dependencies)
+- `07_sequence_model.py` — GRU sequence model (PyTorch) on the raw 6-month
+  behavioural sequence as challenger #2: test AUC 0.764.
+- `08_explainability.py` — governance pack for the ML models: monotonicity-
+  constrained XGBoost (AUC 0.765 vs. 0.780 unconstrained — the measurable
+  price of directional sanity), SHAP global importance, and ECOA-style
+  adverse-action reason codes for the highest-risk accounts.
+- Findings and the four-way model comparison: `outputs/ml_extension_results.md`.
+- Install with `pip install -r requirements-ml.txt`, run `bash run_ml_extension.sh`
+  (core pipeline must have run first). Kept out of the default CI so the
+  validation gate stays fast.
+
 ## Status
 Starter framework with a working baseline. Known open items (also flagged
 in code): estimate the macro satellite coefficient instead of assuming it;
