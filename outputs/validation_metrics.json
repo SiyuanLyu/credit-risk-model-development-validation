@@ -1,0 +1,20 @@
+{
+  "discrimination_test": {
+    "auc": 0.7593321036116369,
+    "gini": 0.5186642072232739,
+    "ks": 0.40411649827562596
+  },
+  "calibration_test": {
+    "brier_score": 0.14199133507698003,
+    "max_abs_decile_diff_pp": 3.1433131007265356
+  },
+  "stability": {
+    "psi_train_vs_test": 0.002177160053011594,
+    "interpretation": "<0.10 stable; 0.10-0.25 monitor; >0.25 significant shift"
+  },
+  "benchmarking_auc_test": {
+    "champion_logistic": 0.7593321036116369,
+    "challenger_xgboost": 0.780403634016077,
+    "naive_pay0_only": 0.6824795256783647
+  }
+}
