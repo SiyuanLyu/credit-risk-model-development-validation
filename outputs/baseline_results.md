@@ -3,7 +3,7 @@
 All figures below come from the first end-to-end run of the pipeline on the
 UCI credit-card dataset (30,000 accounts; 21,000 development / 9,000 hold-out;
 overall default rate 22.1%). Amounts are NT$ as in the source data.
-These are YOUR starting point — re-run, challenge and improve them.
+
 
 ## PD model performance (hold-out test)
 
