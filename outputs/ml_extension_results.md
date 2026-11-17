@@ -9,7 +9,7 @@ Four-way comparison on the same hold-out test set (9,000 accounts):
 | GRU sequence model (raw 6-month behaviour) | Challenger #2 | 0.764 | 0.527 | 0.397 |
 | XGBoost + monotonicity constraints | Governance variant | 0.765 | 0.530 | 0.405 |
 
-## What the numbers say (read this before the interviews do)
+## What the numbers say 
 - The GRU does NOT beat gradient boosting on this dataset. That is the
   expected result at this scale: 30k accounts x 6 monthly steps is small
   for deep learning, and the hand-engineered features already compress
@@ -28,11 +28,3 @@ Four-way comparison on the same hold-out test set (9,000 accounts):
 - Reason codes work: the 20 highest-PD accounts get plain-language
   adverse-action reasons (outputs/reason_codes_sample.csv), dominated by
   recent and worst delinquency — exactly what an ECOA review expects.
-
-## Deliberate open items (your practice tasks)
-- Complete the plain-language mapping for every feature in reason codes
-  (bill_trend and AGE still print raw names).
-- Try a 12-feature-month transformer encoder or add attention and see if
-  it closes the gap to XGBoost; document either outcome honestly.
-- Add calibration + PSI for the GRU and monotone models to Step 4 so the
-  validation report can judge all challengers on equal footing.
